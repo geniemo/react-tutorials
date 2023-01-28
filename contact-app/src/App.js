@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import PhoneForm from './components/PhoneForm';
+import PhoneInfoList from './components/PhoneInfoList';
 
 function App() {
 
@@ -17,7 +18,7 @@ function App() {
   return (
     <div>
       <PhoneForm onCreate={handleCreate} />
-      {JSON.stringify(information)}
+      <PhoneInfoList data={information} />
     </div>
   );
 }
