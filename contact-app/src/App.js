@@ -20,10 +20,24 @@ function App() {
     setInformation(information.filter(info => info.id !== id));
   }
 
+  const handleUpdate = (id, data) => {
+    setInformation(information.map(
+      info => {
+        if (info.id === id) {
+          return {
+            id,
+            ...data,
+          };
+        }
+        return info;
+      }
+    ))
+  }
+
   return (
     <div>
       <PhoneForm onCreate={handleCreate} />
-      <PhoneInfoList data={information} onRemove={handleRemove} />
+      <PhoneInfoList data={information} onRemove={handleRemove} onUpdate={handleUpdate} />
     </div>
   );
 }
