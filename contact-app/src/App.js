@@ -22,6 +22,11 @@ function App() {
       phone: '010-0000-0003',
     },
   ]);
+  const [keyword, setKeyword] = useState('');
+
+  const handleChange = (e) => {
+    setKeyword(e.target.value);
+  }
 
   const handleCreate = (data) => {
     setInformation(information.concat(Object.assign(
@@ -53,7 +58,10 @@ function App() {
   return (
     <div>
       <PhoneForm onCreate={handleCreate} />
-      <PhoneInfoList data={information} onRemove={handleRemove} onUpdate={handleUpdate} />
+      <input value={keyword} onChange={handleChange} placeholder="검색..." />
+      <PhoneInfoList data={information.filter(
+        info => info.name.indexOf(keyword) > -1
+      )} onRemove={handleRemove} onUpdate={handleUpdate} />
     </div>
   );
 }
