@@ -8,6 +8,16 @@ export default class PhoneInfo extends Component {
     phone: '',
   };
 
+  shouldComponentUpdate(nextProps, nextState) { 
+    // 기본적으로 update 되도록 return true; 로 되어있다.
+    // state 값이 달라지면 다시 render 하도록
+    if (this.state !== nextState) {
+      return true;
+    }
+    // props의 info가 달라지면 다시 render
+    return this.props.info !== nextProps.info;
+   }
+
   handleRemove = () => {
     const { info, onRemove } = this.props;
     onRemove(info.id);
@@ -46,6 +56,8 @@ export default class PhoneInfo extends Component {
       padding: '8px',
       margin: '8px',
     };
+
+    console.log(name);
 
     return (
         <div style={style}>
